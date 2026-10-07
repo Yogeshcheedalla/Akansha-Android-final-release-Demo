@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Akanshaa — neural voice core</title>
+  <desc id="desc">A luminous violet and cyan voice assistant core surrounded by orbital rings, sound waves, and circuit traces.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#050816"/><stop offset=".55" stop-color="#11123d"/><stop offset="1" stop-color="#270c48"/></linearGradient>
+    <radialGradient id="core"><stop stop-color="#f8fbff"/><stop offset=".12" stop-color="#9ef9ff"/><stop offset=".34" stop-color="#4b9cff"/><stop offset=".65" stop-color="#833cff"/><stop offset="1" stop-color="#180d45"/></radialGradient>
+    <linearGradient id="ring" x2="1" y2="1"><stop stop-color="#50f5ff"/><stop offset=".48" stop-color="#7864ff"/><stop offset="1" stop-color="#ff4ccf"/></linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4"/></filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#6ea1ff" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/>
+  <g fill="none" stroke="url(#ring)" opacity=".68" transform="translate(800 450)" filter="url(#glow)">
+    <ellipse rx="388" ry="178" stroke-width="3" transform="rotate(-28)"/><ellipse rx="388" ry="178" stroke-width="2" transform="rotate(34)"/><ellipse rx="330" ry="255" stroke-width="1.5" transform="rotate(88)"/>
+    <circle r="300" stroke-width="1" stroke-dasharray="5 18"/><circle r="360" stroke-width="1" stroke-dasharray="2 12"/>
+  </g>
+  <circle cx="800" cy="450" r="164" fill="#6a4cff" opacity=".28" filter="url(#soft)"/>
+  <circle cx="800" cy="450" r="128" fill="url(#core)" filter="url(#glow)"/>
+  <circle cx="800" cy="450" r="99" fill="none" stroke="#e6ffff" stroke-opacity=".85" stroke-width="2"/>
+  <g fill="#fff" filter="url(#glow)"><circle cx="800" cy="450" r="11"/><circle cx="484" cy="306" r="5"/><circle cx="1118" cy="598" r="6"/><circle cx="1014" cy="204" r="4"/><circle cx="574" cy="674" r="4"/></g>
+  <g stroke="#75eaff" stroke-width="3" fill="none" opacity=".8"><path d="M0 200h270l66 66h125M1600 698h-280l-76-76h-110M108 768h176l52-52h115M1490 178h-170l-63 63h-90"/><path d="M0 200h70m-70-18v36M1600 698h-76m76-19v38"/></g>
+  <g fill="#9afaff" opacity=".9"><circle cx="461" cy="266" r="6"/><circle cx="1134" cy="622" r="6"/><circle cx="449" cy="716" r="5"/><circle cx="1167" cy="241" r="5"/></g>
+  <g fill="none" stroke="#e9f5ff" stroke-linecap="round" stroke-width="7" opacity=".72" transform="translate(800 760)"><path d="M-208 0v-18m28 18v-37m28 37v-54m28 54v-27m28 27v-63m28 63v-42m28 42v-72m28 72v-31m28 31v-56m28 56v-24m28 24v-49m28 49v-67m28 67v-35m28 35v-57m28 57v-21m28 21v-45m28 45v-62m28 62v-28m28 28v-51m28 51v-38"/></g>
+  <text x="800" y="823" fill="#f5f7ff" font-family="Segoe UI,Arial,sans-serif" font-size="25" text-anchor="middle" letter-spacing="12">AKANSHAA · VOICE CORE</text>
+</svg>

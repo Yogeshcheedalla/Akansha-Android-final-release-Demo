@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Akanshaa wake signal</title>
+  <desc id="desc">A neon sound pulse crosses a futuristic radar field as the local wake detector listens.</desc>
+  <defs>
+    <radialGradient id="space"><stop stop-color="#241b68"/><stop offset=".62" stop-color="#101332"/><stop offset="1" stop-color="#050713"/></radialGradient>
+    <linearGradient id="pulse"><stop stop-color="#61ffff"/><stop offset=".48" stop-color="#63a7ff"/><stop offset="1" stop-color="#ff4fd8"/></linearGradient>
+    <filter id="neon" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="1200" rx="90" fill="url(#space)"/>
+  <g transform="translate(600 600)" fill="none" stroke="#708aff" stroke-opacity=".25"><circle r="470"/><circle r="380"/><circle r="290"/><circle r="200"/><path d="M-520 0H520M0-520V520M-368-368L368 368M368-368L-368 368"/></g>
+  <path d="M80 600h154l42-10 31 16 30-82 35 164 36-235 42 312 39-226 40 90 43-28h92l31-9 27 17 29-73 31 147 35-212 39 251 37-179 36 64h140" fill="none" stroke="url(#pulse)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon)"/>
+  <circle cx="600" cy="600" r="18" fill="#fff" filter="url(#neon)"/>
+  <g fill="#d9e7ff" font-family="Segoe UI,Arial,sans-serif" text-anchor="middle"><text x="600" y="130" font-size="28" letter-spacing="10">LOCAL WAKE DETECTOR</text><text x="600" y="1060" font-size="52" font-weight="700" letter-spacing="5">HELLO, AKANSHAA</text><text x="600" y="1110" font-size="19" opacity=".7" letter-spacing="7">LISTEN · DETECT · RESPOND</text></g>
+</svg>

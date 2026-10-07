@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="akanshaa_night">#FF070B18</color>
+    <color name="akanshaa_cyan">#FF35E0F2</color>
+    <color name="akanshaa_violet">#FF8B5CF6</color>
+    <color name="akanshaa_pink">#FFF472B6</color>
+    <color name="akanshaa_text">#FFE6F1FF</color>
+    <color name="akanshaa_dim">#FF8FA3C0</color>
+    <color name="akanshaa_card">#FF101A33</color>
+</resources>
