@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a1a">
+  <title>Akanshaa — Neon Artwork Gallery</title>
+  <style>
+    :root { color-scheme: dark; --cyan:#69f6ff; --violet:#9671ff; --pink:#ff60d5; --panel:#111630; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100vh; color:#f4f6ff; font:16px/1.5 "Segoe UI",system-ui,sans-serif; background:radial-gradient(ellipse at 50% -20%,#35206a 0,#11142d 42%,#070916 76%); }
+    header { max-width:1200px; margin:auto; padding:40px 24px 22px; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,4rem); letter-spacing:.06em; text-shadow:0 0 24px #55eaff88; }
+    header p { color:#b6bfdc; max-width:700px }
+    .gallery { max-width:1200px; margin:auto; padding:8px 24px 48px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr)); gap:20px; }
+    .card { padding:12px; border:1px solid #5564ad88; border-radius:22px; background:linear-gradient(145deg,#171d3a,#0b1025); box-shadow:0 0 22px #4e56bb24; transition:transform .2s,border-color .2s,box-shadow .2s; }
+    .card:hover,.card:focus-within { transform:translateY(-4px); border-color:var(--cyan); box-shadow:0 0 28px #50e9ff3b; }
+    .preview { display:block; width:100%; aspect-ratio:16/10; border:0; border-radius:14px; background:#080b1b; cursor:zoom-in; }
+    .card h2 { margin:12px 4px 2px; font-size:1.1rem }
+    .card p { margin:0 4px 10px; color:#aab7d9; font-size:.9rem }
+    .open { color:var(--cyan); text-decoration:none; margin:4px; display:inline-block }
+    .open:hover { text-decoration:underline }
+    dialog { width:min(96vw,1500px); max-width:none; max-height:94vh; padding:14px; border:1px solid #8c8dff; border-radius:20px; background:#090d20; color:#fff; box-shadow:0 0 55px #6f5dff88; }
+    dialog::backdrop { background:#02030bd9; backdrop-filter:blur(8px) }
+    .viewerbar { display:flex; align-items:center; gap:12px; padding:2px 2px 12px; flex-wrap:wrap }
+    .viewerbar strong { margin-right:auto }
+    button { border:1px solid #6578c8; border-radius:999px; color:#f4f6ff; background:#171e40; padding:9px 14px; cursor:pointer }
+    button:hover,button:focus-visible { border-color:var(--cyan); outline:none; box-shadow:0 0 15px #52eaff77 }
+    #zoomLabel { color:#c9d2f1; min-width:48px; text-align:center }
+    #largeImage { display:block; max-width:100%; max-height:calc(94vh - 96px); margin:auto; object-fit:contain; transform-origin:center; transition:transform .15s; }
+    footer { max-width:1200px; margin:auto; padding:0 24px 32px; color:#8e9abe; font-size:.85rem }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AKANSHAA / VISUAL SYSTEM</h1>
+    <p>Neon sketches for a voice-first assistant: a listening core, a wake pulse, and a local-first tool network. Select an image to open the interactive viewer. Use ←/→ to switch artwork, +/− to zoom, and Esc to close.</p>
+  </header>
+  <main class="gallery" aria-label="Akanshaa artwork">
+    <article class="card" data-title="Neural Voice Core" data-src="01-neural-orb.svg"><img class="preview" src="01-neural-orb.svg" alt="Glowing cyan and violet Akanshaa voice core surrounded by orbital circuitry"><h2>Neural Voice Core</h2><p>Orbiting voice engine · cyan, violet, and magenta light</p><button class="open" type="button">Open interactive view</button></article>
+    <article class="card" data-title="Wake Signal" data-src="02-wake-signal.svg"><img class="preview" src="02-wake-signal.svg" alt="Neon voice pulse over a futuristic local wake detector radar"><h2>Wake Signal</h2><p>A sound pulse moving across a local listening field</p><button class="open" type="button">Open interactive view</button></article>
+    <article class="card" data-title="Local-First Network" data-src="03-local-first.svg"><img class="preview" src="03-local-first.svg" alt="Akanshaa core connected to voice, private memory, desktop tools, and approved actions"><h2>Local-First Network</h2><p>Voice, memory, desktop tools, and user-approved actions</p><button class="open" type="button">Open interactive view</button></article>
+  </main>
+  <dialog id="viewer" aria-label="Artwork viewer">
+    <div class="viewerbar"><strong id="imageTitle">Artwork</strong><button id="prev" type="button" aria-label="Previous image">← Previous</button><button id="next" type="button" aria-label="Next image">Next →</button><button id="minus" type="button" aria-label="Zoom out">−</button><span id="zoomLabel">100%</span><button id="plus" type="button" aria-label="Zoom in">+</button><button id="close" type="button" aria-label="Close viewer">Close ✕</button></div>
+    <img id="largeImage" alt="">
+  </dialog>
+  <footer>All artwork is original SVG in this repository. The gallery runs locally without network access or third-party scripts.</footer>
+  <script>
+    (() => {
+      const cards = [...document.querySelectorAll('.card')];
+      const dialog = document.querySelector('#viewer');
+      const image = document.querySelector('#largeImage');
+      const title = document.querySelector('#imageTitle');
+      const zoomLabel = document.querySelector('#zoomLabel');
+      let current = 0, zoom = 1;
+      function show(index) {
+        current = (index + cards.length) % cards.length;
+        const card = cards[current];
+        image.src = card.dataset.src; image.alt = card.querySelector('img').alt;
+        title.textContent = card.dataset.title; zoom = 1; updateZoom();
+        if (!dialog.open) dialog.showModal();
+      }
+      function updateZoom() { image.style.transform = `scale(${zoom})`; zoomLabel.textContent = `${Math.round(zoom * 100)}%`; }
+      cards.forEach((card, index) => card.querySelector('button').addEventListener('click', () => show(index)));
+      cards.forEach((card, index) => card.querySelector('img').addEventListener('click', () => show(index)));
+      document.querySelector('#prev').addEventListener('click', () => show(current - 1));
+      document.querySelector('#next').addEventListener('click', () => show(current + 1));
+      document.querySelector('#plus').addEventListener('click', () => { zoom = Math.min(zoom + .2, 3); updateZoom(); });
+      document.querySelector('#minus').addEventListener('click', () => { zoom = Math.max(zoom - .2, .5); updateZoom(); });
+      document.querySelector('#close').addEventListener('click', () => dialog.close());
+      image.addEventListener('wheel', event => { event.preventDefault(); zoom = Math.max(.5, Math.min(3, zoom + (event.deltaY < 0 ? .1 : -.1))); updateZoom(); }, { passive:false });
+      document.addEventListener('keydown', event => {
+        if (!dialog.open) return;
+        if (event.key === 'ArrowRight') show(current + 1);
+        if (event.key === 'ArrowLeft') show(current - 1);
+        if (event.key === '+' || event.key === '=') { zoom = Math.min(zoom + .2, 3); updateZoom(); }
+        if (event.key === '-') { zoom = Math.max(zoom - .2, .5); updateZoom(); }
+      });
+    })();
+  </script>
+</body>
+</html>
